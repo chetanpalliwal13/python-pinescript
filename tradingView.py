@@ -7,6 +7,7 @@ import random
 import datetime
 from threading import Timer
 from contextvars import ContextVar
+from pinescript import *
 
 #import matplotlib.pyplot as plt
 
@@ -16,12 +17,12 @@ high = ContextVar("high")
 low = ContextVar("low")
 volume = ContextVar("volume")
 
-def security(symbol, resolution="D", expression="close", gaps=None, lookahead=None):
+def security(symbol, resolution, expression, gaps=None, lookahead=None):
     ohlcvMmapper = {"open":"Open", "high":"High", "low":"Low", "close":"Close", "volume":"Volume"}
     symbolLen = len(symbol)
     if symbolLen<0:
         raise Exception("No Tick Identified")
-
+    expression = expression.get()
     interval = int("0" if len(re.findall(r'\d', expression))==0 else re.findall(r'\d', expression)[0])
     #print("Interval is = {}".format(type(interval)))
     whatToGet = re.findall(r'[A-Za-z]+', expression)[0]
