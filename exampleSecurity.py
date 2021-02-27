@@ -4,11 +4,11 @@ from tradingView import *
 # @version=4
 study("security Function Test", overlay=True)
 
-MSFT_Close = security("MSFT", "D", "close")
-MSFT_Close30 = security("MSFT", "D", "close[30]")
+MSFT_Close = security("MSFT", "D", close)
+MSFT_Open = security("MSFT", "D", open)
 
-MSFT_High_365 = security("MSFT", "M", "high[365]")
-MSFT_Low_365 = security("MSFT", "Y", "low[365]")
+MSFT_High = security("MSFT", "D", high)
+MSFT_Low = security("MSFT", "D", low)
 
 
 #print(iff(lastup < lastdown, color.red , color.green))
